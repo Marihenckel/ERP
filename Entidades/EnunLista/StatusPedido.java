@@ -1,8 +1,9 @@
-package Entidades;
+package Entidades.EnunLista;
 
 public enum StatusPedido {
-    Novopedido,
-    Empreparo,
-    Pronto,
-    Entregue
+    aberto,
+    confirmado,
+    emPreparo,
+    finalizado,
+    cancelado
 }
