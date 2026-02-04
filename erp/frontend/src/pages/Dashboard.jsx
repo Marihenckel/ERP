@@ -1,26 +1,28 @@
-import DashboardCard from "../components/DashboardCard" 
+import { useEffect, useState } from "react";
+import { evolucaoMensal, rankingProdutos } from "../api/dashboard";
+import React from "react";
 
-export default function Dashboard({ data }) {
+export default function Dashboard() {
+  const [evolucao, setEvolucao] = useState([]);
+  const [ranking, setRanking] = useState([]);
+
+  useEffect(() => {
+    evolucaoMensal("2025-01-01", "2026-12-31")
+      .then(res => setEvolucao(res.data));
+
+    rankingProdutos("2025-01-01", "2026-12-31")
+      .then(res => setRanking(res.data));
+  }, []);
+
   return (
-    <div className="p-8">
-      <h1 className="text-4xl font-bold text-white mb-8">
-        Visão Geral
-      </h1>
+    <div>
+      <h1>Dashboard</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <DashboardCard
-          title="Pedidos Hoje"
-          value={data.totalPedidos}
-        />
-        <DashboardCard
-          title="Pedidos Pagos"
-          value={data.pedidosPagos}
-        />
-        <DashboardCard
-          title="Faturamento"
-          value={`R$ ${data.faturamento.toFixed(2)}`}
-        />
-      </div>
+      <h2>Evolução Mensal</h2>
+      <pre>{JSON.stringify(evolucao, null, 2)}</pre>
+
+      <h2>Ranking de Produtos</h2>
+      <pre>{JSON.stringify(ranking, null, 2)}</pre>
     </div>
   );
 }

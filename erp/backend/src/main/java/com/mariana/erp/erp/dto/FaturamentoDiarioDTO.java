@@ -1,8 +1,8 @@
 package com.mariana.erp.erp.dto;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 public record FaturamentoDiarioDTO(
-    LocalDate data,
-    Double totalVendas
-) {}
+        Date data,
+        Double total) {
+}

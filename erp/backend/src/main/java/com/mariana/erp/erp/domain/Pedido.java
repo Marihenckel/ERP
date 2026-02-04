@@ -1,10 +1,9 @@
 package com.mariana.erp.erp.domain;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -14,6 +13,9 @@ public class Pedido {
     private Long id;
 
     private LocalDateTime dataHora;
+
+    @Enumerated(EnumType.STRING)
+    private CanalPedido canal;
 
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
@@ -77,5 +79,12 @@ private Pagamento pagamento;
     }
     public void setPagamento(Pagamento pagamento) {
         this.pagamento = pagamento;
+    }
+
+    public CanalPedido getCanal() {
+        return canal;
+    }
+    public void setCanal(CanalPedido canal) {
+        this.canal = canal;
     }
 }

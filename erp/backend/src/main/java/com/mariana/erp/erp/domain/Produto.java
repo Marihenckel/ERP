@@ -1,7 +1,6 @@
 package com.mariana.erp.erp.domain;
 
 import jakarta.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
 public class Produto {

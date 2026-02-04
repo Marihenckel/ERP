@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom"
 import Sidebar from "./components/Sidebar"
 import Topbar from "./components/Topbar"
+import React from "react";
 
 import Dashboard from "./pages/Dashboard"
 import Pedidos from "./pages/Pedidos"
