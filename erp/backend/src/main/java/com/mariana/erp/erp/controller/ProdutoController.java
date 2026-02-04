@@ -16,6 +16,7 @@ public class ProdutoController {
         this.produtoRepository = produtoRepository;
     }
 
+    @SuppressWarnings("null")
     @PostMapping
     public Produto criar(@RequestBody Produto produto) {
         return produtoRepository.save(produto);
