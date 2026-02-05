@@ -17,7 +17,7 @@ function EmBreve({ titulo }) {
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Dashboard />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/produtos" element={<Produtos />} />
 
