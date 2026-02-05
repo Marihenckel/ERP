@@ -428,6 +428,7 @@ const styles = {
     outline: "none",
     fontSize: 14,
     background: C.paper,
+    color: C.navy,
   },
   textarea: {
     border: "1px solid rgba(1,51,131,0.18)",
@@ -438,6 +439,7 @@ const styles = {
     minHeight: 90,
     resize: "vertical",
     background: C.paper,
+    color: C.navy,
   },
   formActions: { display: "flex", justifyContent: "flex-end" },
 
