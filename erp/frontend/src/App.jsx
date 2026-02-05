@@ -1,29 +1,31 @@
-import { Routes, Route } from "react-router-dom"
-import Sidebar from "./components/Sidebar"
-import Topbar from "./components/Topbar"
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 
-import Dashboard from "./pages/Dashboard"
-import Pedidos from "./pages/Pedidos"
-import Produtos from "./pages/Produtos"
-import Relatorios from "./pages/Relatorios"
+import Home from "./pages/Home";
+import Produtos from "./pages/Produtos";
+import Dashboard from "./pages/Dashboard";
+
+function EmBreve({ titulo }) {
+  return (
+    <div style={{ padding: 24, fontFamily: "system-ui" }}>
+      <h1>{titulo}</h1>
+      <p>Em breve 🙂</p>
+    </div>
+  );
+}
 
 export default function App() {
   return (
-    <div className="flex">
-      <Sidebar />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/produtos" element={<Produtos />} />
 
-      <div className="flex-1 bg-slate-900 min-h-screen text-white">
-        <Topbar />
-        <main className="p-6">
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/pedidos" element={<Pedidos />} />
-            <Route path="/produtos" element={<Produtos />} />
-            <Route path="/relatorios" element={<Relatorios />} />
-          </Routes>
-        </main>
-      </div>
-    </div>
-  )
+      <Route path="/pedidos" element={<EmBreve titulo="Pedidos" />} />
+      <Route path="/relatorios" element={<EmBreve titulo="Relatórios" />} />
+      <Route path="/config" element={<EmBreve titulo="Configurações" />} />
+
+      <Route path="*" element={<EmBreve titulo="Página não encontrada" />} />
+    </Routes>
+  );
 }
