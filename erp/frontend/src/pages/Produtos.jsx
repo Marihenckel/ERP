@@ -422,7 +422,7 @@ const styles = {
   field: { display: "grid", gap: 6 },
   label: { fontSize: 12, color: "rgba(1,51,131,0.65)", fontWeight: 900 },
   input: {
-    border: "1px solid rgba(1,51,131,0.18)",
+    border: "1px solid rgba(19, 19, 19, 0.57)",
     borderRadius: 14,
     padding: "10px 12px",
     outline: "none",
