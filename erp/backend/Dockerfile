@@ -4,6 +4,9 @@ WORKDIR /app
 
 COPY . .
 
+# Corrige permissão do Maven Wrapper no Linux
+RUN chmod +x mvnw
+
 RUN ./mvnw clean package -DskipTests
 
 EXPOSE 8080
