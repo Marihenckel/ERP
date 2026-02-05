@@ -23,7 +23,7 @@ export default function Produtos() {
     setCarregandoLista(true);
     try {
       const res = await listarProdutos();
-      setProdutos(res.data || []);
+      setProdutos(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
       console.error(err);
       setMsg({ type: "error", text: "Falha ao carregar produtos." });
@@ -37,26 +37,32 @@ export default function Produtos() {
   }, []);
 
   const produtosFiltrados = useMemo(() => {
-    const q = busca.trim().toLowerCase();
-    if (!q) return produtos;
+  if (!Array.isArray(produtos)) return [];
 
-    return produtos.filter((p) => {
-      const nome = (p.nome ?? "").toLowerCase();
-      const desc = (p.descricao ?? "").toLowerCase();
-      return nome.includes(q) || desc.includes(q);
-    });
-  }, [produtos, busca]);
+  const q = busca.trim().toLowerCase();
+  if (!q) return produtos;
+
+  return produtos.filter((p) => {
+    const nome = (p.nome ?? "").toLowerCase();
+    const desc = (p.descricao ?? "").toLowerCase();
+    return nome.includes(q) || desc.includes(q);
+  });
+}, [produtos, busca]);
 
   const totalItens = produtosFiltrados.length;
 
   const mediaPreco = useMemo(() => {
-    if (produtosFiltrados.length === 0) return 0;
-    const soma = produtosFiltrados.reduce(
-      (acc, p) => acc + Number(p.preco || 0),
-      0
-    );
-    return soma / produtosFiltrados.length;
-  }, [produtosFiltrados]);
+  if (!Array.isArray(produtosFiltrados) || produtosFiltrados.length === 0) {
+    return 0;
+  }
+
+  const soma = produtosFiltrados.reduce(
+    (acc, p) => acc + Number(p.preco || 0),
+    0
+  );
+
+  return soma / produtosFiltrados.length;
+}, [produtosFiltrados]);
 
   function iniciarEdicao(p) {
     setEditId(p.id);
